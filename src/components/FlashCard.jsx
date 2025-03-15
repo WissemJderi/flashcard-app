@@ -1,11 +1,8 @@
 import { useState } from "react";
 import "../styles/flashcard.css";
 
-function FlashCard() {
+function FlashCard({ question, answer, category }) {
   const [showAnswer, setShowAnswer] = useState(false);
-  const question = "What is the capital of France?";
-  const category = "Geography";
-  const answer = "Paris";
 
   return (
     <div className={`card-container ${showAnswer ? "show" : "hide"}`}>
@@ -21,6 +18,7 @@ function FlashCard() {
         onClick={() => {
           setShowAnswer(!showAnswer);
         }}
+        className="see-the-answer"
       >
         See the answer
       </button>
