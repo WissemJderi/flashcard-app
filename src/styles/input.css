@@ -1,0 +1,35 @@
+.flash-card-input {
+  border: 1px solid black;
+  background-color: #cfdbd5;
+  border-radius: 9px;
+  transition: 0.6s ease, color 0.6s ease;
+  margin: 10px 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-self: center;
+  justify-content: center;
+  width: 80%;
+}
+.form > input,
+textarea,
+select {
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+}
+textarea {
+  height: 160px;
+}
+
+.form > label {
+  padding-left: 5px;
+  font-weight: 700;
+}

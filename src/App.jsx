@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import FlashCard from "./components/FlashCard";
 import Header from "./components/Header";
+import FlashCardInput from "./components/FlashCardInput";
 
 function App() {
   const [flashCards] = useState([
@@ -31,23 +32,29 @@ function App() {
       answer: "Leonardo da Vinci",
     },
   ]);
-
+  const [isShown, setIsShown] = useState(false);
   let flashCardsList = flashCards.map((flashCard) => {
     return (
-      <>
-        <div className="flashCards-container">
-          <FlashCard
-            question={flashCard.question}
-            category={flashCard.category}
-            answer={flashCard.answer}
-          />
-        </div>
-      </>
+      <div className="flashCards-container" key={flashCard.question}>
+        <FlashCard
+          question={flashCard.question}
+          category={flashCard.category}
+          answer={flashCard.answer}
+        />
+      </div>
     );
   });
+
+  //Functions
+
+  function addNewFlashCard() {
+    setIsShown(!isShown);
+  }
+
   return (
     <>
-      <Header />
+      <Header addNewFlashCard={addNewFlashCard} />
+      {isShown ? <FlashCardInput /> : null}
       {flashCardsList}
     </>
   );
