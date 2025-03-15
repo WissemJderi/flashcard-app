@@ -6,6 +6,11 @@
   transition: 0.6s ease, color 0.6s ease;
   width: 100%;
   margin: 10px 0px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
 .card-container > h2,
 h3 {
@@ -17,7 +22,6 @@ h3 {
   cursor: pointer;
   font-size: 15px;
   font-weight: 600;
-  border-radius: 5px;
   transition: background-color 0.6s ease, color 0.6s ease;
 }
 .see-the-answer:hover {
@@ -29,3 +33,18 @@ h3 {
 }
 
 /* Media query for smaller screens */
+@media (max-width: 600px) {
+  .card-container {
+    height: 120px; /* Adjust the height */
+    margin: 5px 0px; /* Adjust the margin */
+    padding: 10px; /* Adjust the padding */
+  }
+  .card-container > h2,
+  h3 {
+    font-size: 14px; /* Adjust the font size */
+  }
+  .see-the-answer {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+}
