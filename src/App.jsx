@@ -32,6 +32,15 @@ function App() {
       answer: "Leonardo da Vinci",
     },
   ]);
+
+  const [categories, setCategories] = useState([
+    "Arabic",
+    "English",
+    "Geo",
+    "Math",
+    "Science",
+    "DSA",
+  ]);
   const [isShown, setIsShown] = useState(false);
   let flashCardsList = flashCards.map((flashCard) => {
     return (
@@ -54,7 +63,7 @@ function App() {
   return (
     <>
       <Header addNewFlashCard={addNewFlashCard} />
-      {isShown ? <FlashCardInput /> : null}
+      {isShown ? <FlashCardInput categories={categories} /> : null}
       {flashCardsList}
     </>
   );
