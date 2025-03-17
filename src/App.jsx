@@ -12,16 +12,14 @@ function App() {
   });
 
   const [newCategory, setNewCategory] = useState("");
-  const [categories, setCategories] = useState([
-    "Arabic",
-    "English",
-    "Geo",
-    "Math",
-    "Science",
-    "DSA",
-  ]);
+  const [categories, setCategories] = useState(() => {
+    const savedCategories = localStorage.getItem("Categories");
+    return savedCategories
+      ? JSON.parse(savedCategories)
+      : ["Arabic", "English", "Geo", "Math", "Science", "DSA"];
+  });
   const [inputIsShown, setInputIsShown] = useState(false);
-  const [addCat, setAddCat] = useState(true);
+  const [addCat, setAddCat] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("");
 
   useEffect(() => {
