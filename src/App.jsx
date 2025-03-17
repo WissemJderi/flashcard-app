@@ -1,37 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import FlashCard from "./components/FlashCard";
 import Header from "./components/Header";
 import FlashCardInput from "./components/FlashCardInput";
 
 function App() {
-  const [flashCards, setFlashCards] = useState([
-    {
-      question: "What is the capital of France?",
-      category: "Geography",
-      answer: "Paris",
-    },
-    {
-      question: "What is 2 + 2?",
-      category: "Mathematics",
-      answer: "4",
-    },
-    {
-      question: "Who wrote 'To Kill a Mockingbird'?",
-      category: "Literature",
-      answer: "Harper Lee",
-    },
-    {
-      question: "What is the chemical symbol for water?",
-      category: "Science",
-      answer: "H2O",
-    },
-    {
-      question: "Who painted the Mona Lisa?",
-      category: "Art",
-      answer: "Leonardo da Vinci",
-    },
-  ]);
+  const [flashCards, setFlashCards] = useState(() => {
+    // Load flashcards from local storage or use default flashcards
+    const savedFlashCards = localStorage.getItem("flashCards");
+    return savedFlashCards ? JSON.parse(savedFlashCards) : [];
+  });
 
   const [categories] = useState([
     "Arabic",
@@ -42,6 +20,12 @@ function App() {
     "DSA",
   ]);
   const [isShown, setIsShown] = useState(true);
+
+  useEffect(() => {
+    // Save flashcards to local storage whenever they change
+    localStorage.setItem("flashCards", JSON.stringify(flashCards));
+  }, [flashCards]);
+
   let flashCardsList = flashCards.map((flashCard) => {
     return (
       <div className="flashCards-container" key={flashCard.question}>
@@ -54,7 +38,7 @@ function App() {
     );
   });
 
-  //Functions
+  // Functions
 
   function addNewFlashCard() {
     setIsShown(!isShown);
