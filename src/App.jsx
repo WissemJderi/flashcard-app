@@ -5,7 +5,7 @@ import Header from "./components/Header";
 import FlashCardInput from "./components/FlashCardInput";
 
 function App() {
-  const [flashCards] = useState([
+  const [flashCards, setFlashCards] = useState([
     {
       question: "What is the capital of France?",
       category: "Geography",
@@ -33,7 +33,7 @@ function App() {
     },
   ]);
 
-  const [categories, setCategories] = useState([
+  const [categories] = useState([
     "Arabic",
     "English",
     "Geo",
@@ -41,7 +41,7 @@ function App() {
     "Science",
     "DSA",
   ]);
-  const [isShown, setIsShown] = useState(false);
+  const [isShown, setIsShown] = useState(true);
   let flashCardsList = flashCards.map((flashCard) => {
     return (
       <div className="flashCards-container" key={flashCard.question}>
@@ -60,10 +60,19 @@ function App() {
     setIsShown(!isShown);
   }
 
+  function addNewCard(e, newCard) {
+    e.preventDefault();
+    setFlashCards((prevArr) => {
+      return [...prevArr, newCard];
+    });
+  }
+
   return (
     <>
       <Header addNewFlashCard={addNewFlashCard} />
-      {isShown ? <FlashCardInput categories={categories} /> : null}
+      {isShown ? (
+        <FlashCardInput categories={categories} addNewCard={addNewCard} />
+      ) : null}
       {flashCardsList}
     </>
   );
