@@ -10,6 +10,16 @@
   align-items: center;
   gap: 10px;
 }
+
+.add-category-form {
+  border: 1px solid black;
+  background-color: #cfdbd5;
+  border-radius: 9px;
+  transition: 0.6s ease, color 0.6s ease;
+  margin: 10px 20px;
+  padding: 10px;
+  gap: 10px;
+}
 .form {
   display: flex;
   flex-direction: column;
@@ -33,7 +43,8 @@ textarea {
   padding-left: 5px;
   font-weight: 700;
 }
-.add-btn {
+.add-btn,
+.add-category-form > button {
   border: none;
   padding: 10px 20px;
   cursor: pointer;
@@ -44,4 +55,24 @@ textarea {
 .add-btn:hover {
   background-color: black;
   color: white;
+}
+.add-category-form > button:hover {
+  background-color: black;
+  color: white;
+}
+.header-btns > button {
+  margin: 0px 10px;
+}
+
+.add-category-form {
+  width: 40%;
+  margin: 0 30%;
+  display: flex;
+  flex-direction: column;
+}
+.add-category-form > input {
+  margin: 10px 0px;
+  padding: 10px;
+  border-radius: 7px;
+  border: 1px solid black;
 }

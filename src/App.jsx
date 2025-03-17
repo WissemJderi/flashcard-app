@@ -11,7 +11,8 @@ function App() {
     return savedFlashCards ? JSON.parse(savedFlashCards) : [];
   });
 
-  const [categories] = useState([
+  const [newCategory, setNewCategory] = useState("");
+  const [categories, setCategories] = useState([
     "Arabic",
     "English",
     "Geo",
@@ -19,7 +20,8 @@ function App() {
     "Science",
     "DSA",
   ]);
-  const [isShown, setIsShown] = useState(false);
+  const [inputIsShown, setInputIsShown] = useState(false);
+  const [addCat, setAddCat] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState("");
 
   useEffect(() => {
@@ -27,10 +29,17 @@ function App() {
     localStorage.setItem("flashCards", JSON.stringify(flashCards));
   }, [flashCards]);
 
+  useEffect(() => {
+    localStorage.setItem("Categories", JSON.stringify(categories));
+  }, [categories]);
+
   function addNewFlashCard() {
-    setIsShown(!isShown);
+    setInputIsShown(!inputIsShown);
   }
 
+  function addNewCategory() {
+    setAddCat(!addCat);
+  }
   function addNewCard(e, newCard) {
     e.preventDefault();
     setFlashCards((prevArr) => {
@@ -82,12 +91,36 @@ function App() {
 
   return (
     <>
-      <Header addNewFlashCard={addNewFlashCard} />
-      {isShown ? (
+      <Header
+        addNewFlashCard={addNewFlashCard}
+        addNewCategory={addNewCategory}
+      />
+      {inputIsShown ? (
         <FlashCardInput categories={categories} addNewCard={addNewCard} />
       ) : null}
       <h3 className="info">Filter By Category: </h3>
       <div className="categories-container">{categoriesSpans}</div>
+      {addCat ? (
+        <form className="add-category-form">
+          <input
+            type="text"
+            value={newCategory}
+            onChange={(e) => {
+              setNewCategory(e.target.value);
+            }}
+          />
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              setCategories((prevArr) => {
+                return [...prevArr, newCategory];
+              });
+            }}
+          >
+            Add
+          </button>
+        </form>
+      ) : null}
       {flashCards.length === 0 ? (
         <h1 className="info">You Have No Flash Cards...</h1>
       ) : (

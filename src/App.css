@@ -29,6 +29,7 @@ body {
   text-align: center;
   align-self: center;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 10px;
   width: 50%;
   margin: 20px 25%;
