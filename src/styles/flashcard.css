@@ -16,7 +16,8 @@
 h3 {
   color: black;
 }
-.see-the-answer {
+.see-the-answer,
+.delete-btn {
   border: none;
   padding: 10px 20px;
   cursor: pointer;
@@ -26,6 +27,11 @@ h3 {
 }
 .see-the-answer:hover {
   background-color: black;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #a4161a;
   color: white;
 }
 .show {

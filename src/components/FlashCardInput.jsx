@@ -52,6 +52,7 @@ export default function FlashCardInput({ categories, addNewCard }) {
           }}
           value={newCard.category}
         >
+          <option>{"<---->"}</option>
           {categories.map((category) => {
             return (
               <option value={`${category}`} key={category}>

@@ -33,6 +33,7 @@ function App() {
           question={flashCard.question}
           category={flashCard.category}
           answer={flashCard.answer}
+          deleteCard={deleteCard}
         />
       </div>
     );
@@ -48,6 +49,12 @@ function App() {
     e.preventDefault();
     setFlashCards((prevArr) => {
       return [...prevArr, newCard];
+    });
+  }
+
+  function deleteCard(question) {
+    setFlashCards((prevArr) => {
+      return prevArr.filter((flashCard) => flashCard.question !== question);
     });
   }
 

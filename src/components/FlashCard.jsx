@@ -1,14 +1,14 @@
 import { useState } from "react";
 import "../styles/flashcard.css";
 
-function FlashCard({ question, answer, category }) {
+function FlashCard({ question, answer, category, deleteCard }) {
   const [showAnswer, setShowAnswer] = useState(false);
 
   return (
     <div className={`card-container ${showAnswer ? "show" : "hide"}`}>
       <h2>The Question: {question}</h2>
       {!showAnswer ? <></> : <h2> The Answer: {answer}</h2>}
-      <h3>The Category: {category}</h3>
+      {showAnswer ? null : <h3>The Category: {category}</h3>}
 
       <button
         onClick={() => {
@@ -17,6 +17,14 @@ function FlashCard({ question, answer, category }) {
         className="see-the-answer"
       >
         See the answer
+      </button>
+      <button
+        className="delete-btn"
+        onClick={() => {
+          deleteCard(question);
+        }}
+      >
+        Delete The Card
       </button>
     </div>
   );

@@ -24,3 +24,6 @@
 .add-flash-card:hover {
   background-color: #e8eddf;
 }
+.header-btns > button {
+  margin: 0px 10px;
+}
