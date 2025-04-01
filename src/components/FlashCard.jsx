@@ -8,7 +8,7 @@ function FlashCard({ question, answer, category, deleteCard }) {
     <div className={`card-container ${showAnswer ? "show" : "hide"}`}>
       <h2>The Question: {question}</h2>
       {!showAnswer ? <></> : <h2> The Answer: {answer}</h2>}
-      {showAnswer ? null : <h3>The Category: {category}</h3>}
+      {showAnswer ? null : <h2>The Category: {category}</h2>}
 
       <button
         onClick={() => {

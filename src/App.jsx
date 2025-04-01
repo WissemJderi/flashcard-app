@@ -12,14 +12,16 @@ function App() {
   });
 
   const [newCategory, setNewCategory] = useState("");
+
   const [categories, setCategories] = useState(() => {
     const savedCategories = localStorage.getItem("Categories");
     return savedCategories
       ? JSON.parse(savedCategories)
       : ["Arabic", "English", "Geo", "Math", "Science", "DSA"];
   });
+
   const [inputIsShown, setInputIsShown] = useState(false);
-  const [addCat, setAddCat] = useState(false);
+  const [addCate, setAddCate] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("");
 
   useEffect(() => {
@@ -36,13 +38,14 @@ function App() {
   }
 
   function addNewCategory() {
-    setAddCat(!addCat);
+    setAddCate(!addCate);
   }
   function addNewCard(e, newCard) {
     e.preventDefault();
     setFlashCards((prevArr) => {
       return [...prevArr, newCard];
     });
+    setInputIsShown(!inputIsShown);
   }
 
   function deleteCard(question) {
@@ -98,7 +101,7 @@ function App() {
       ) : null}
       <h3 className="info">Filter By Category: </h3>
       <div className="categories-container">{categoriesSpans}</div>
-      {addCat ? (
+      {addCate ? (
         <form className="add-category-form">
           <input
             type="text"
