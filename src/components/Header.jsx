@@ -6,7 +6,7 @@ function Header({ addNewFlashCard, addNewCategory }) {
 
       <div className="header-btns">
         <button
-          className="add-flash-card"
+          className="header-buttons"
           onClick={() => {
             addNewFlashCard();
           }}
@@ -15,7 +15,7 @@ function Header({ addNewFlashCard, addNewCategory }) {
           Add A New Flash Card
         </button>
         <button
-          className="add-flash-card"
+          className="header-buttons"
           onClick={() => {
             addNewCategory();
           }}
@@ -23,6 +23,7 @@ function Header({ addNewFlashCard, addNewCategory }) {
           {" "}
           Add A New Category
         </button>
+        <button className="header-buttons">Manage Your Categories</button>
       </div>
     </div>
   );

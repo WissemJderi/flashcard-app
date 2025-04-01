@@ -21,8 +21,10 @@ function App() {
   });
 
   const [inputIsShown, setInputIsShown] = useState(false);
+
   const [addCate, setAddCate] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState("");
+
+  const [selectedCategory, setSelectedCategory] = useState();
 
   useEffect(() => {
     // Save flashcards to local storage whenever they change
@@ -39,6 +41,7 @@ function App() {
 
   function addNewCategory() {
     setAddCate(!addCate);
+    setInputIsShown(false);
   }
   function addNewCard(e, newCard) {
     e.preventDefault();
@@ -58,27 +61,33 @@ function App() {
     setSelectedCategory(cat);
   }
 
-  const filteredFlashCards =
-    selectedCategory && selectedCategory !== "See All"
-      ? flashCards.filter(
-          (flashCard) => flashCard.category === selectedCategory
-        )
-      : flashCards;
+  const filteredFlashCards = selectedCategory
+    ? flashCards.filter((flashCard) => flashCard.category === selectedCategory)
+    : flashCards;
 
-  const flashCardsList = filteredFlashCards.map((flashCard) => {
-    return (
-      <div className="flashCards-container" key={flashCard.question}>
-        <FlashCard
-          question={flashCard.question}
-          category={flashCard.category}
-          answer={flashCard.answer}
-          deleteCard={deleteCard}
-        />
-      </div>
+  const flashCardsList =
+    filteredFlashCards.length === 0 ? (
+      <h1 className="info">
+        {selectedCategory
+          ? `No flashcards available in the "${selectedCategory}" category.`
+          : "You Have No Flash Cards..."}
+      </h1>
+    ) : (
+      filteredFlashCards.map((flashCard) => {
+        return (
+          <div className="flashCards-container" key={flashCard.question}>
+            <FlashCard
+              question={flashCard.question}
+              category={flashCard.category}
+              answer={flashCard.answer}
+              deleteCard={deleteCard}
+            />
+          </div>
+        );
+      })
     );
-  });
 
-  const categoriesSpans = [...categories, "See All"].map((category) => {
+  const categoriesSpans = [...categories].map((category) => {
     return (
       <span
         className="category-span"
@@ -122,11 +131,7 @@ function App() {
           </button>
         </form>
       ) : null}
-      {flashCards.length === 0 ? (
-        <h1 className="info">You Have No Flash Cards...</h1>
-      ) : (
-        flashCardsList
-      )}
+      {flashCardsList}
     </>
   );
 }
